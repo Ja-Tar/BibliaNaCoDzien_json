@@ -1,4 +1,5 @@
-# get data from https://biblianacodzien.pl/bncd/api/dzien/2025-06-15/ (change date to today's date)
+permissions:
+  contents: write  # Allows the workflow to push changes to the repository
 
 name: Aktualizacja Biblia na co dzień
 on:
