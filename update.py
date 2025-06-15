@@ -39,6 +39,8 @@ def create_file(data):
         pierwszeA = parse_html(pierwsze["zrodlo"])
         drugieT = parse_html(drugie["html"])
         drugieA = parse_html(drugie["zrodlo"])
+        trzecieT = parse_html(data[0]["trzecie"]["html"])
+        trzecieA = parse_html(data[0]["trzecie"]["zrodlo"])
         file.seek(0)
         json.dump([
             {
@@ -48,6 +50,10 @@ def create_file(data):
             {
                 "author": drugieA,
                 "content": drugieT,
+            },
+            {
+                "author": trzecieA,
+                "content": trzecieT,
             }
         ], file, ensure_ascii=False, indent=4)
         file.truncate()
