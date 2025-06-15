@@ -19,10 +19,6 @@ jobs:
 
       - name: Update Biblia na co dzień
         run: |
-          curl -s "https://biblianacodzien.pl/bncd/api/dzien/${{ env.date }}" | jq '.dzien' > bncd.json
-
-      - name: Process JSON
-        run: |
           python3 parse.py
 
       - name: Git Auto Commit
