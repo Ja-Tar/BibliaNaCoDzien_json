@@ -19,7 +19,7 @@ jobs:
 
       - name: Update Biblia na co dzień
         run: |
-          python3 parse.py
+          python3 update.py
 
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v6
