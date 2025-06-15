@@ -1,1 +1,34 @@
+# get data from https://biblianacodzien.pl/bncd/api/dzien/2025-06-15/ (change date to today's date)
+
+name: Aktualizacja Biblia na co dzień
+on:
+  schedule:
+    - cron: '0 5 * * *'  # Runs daily at 05:00 UTC
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  update-bncd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fetch today's date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Update Biblia na co dzień
+        run: |
+          curl -s "https://biblianacodzien.pl/bncd/api/dzien/${{ env.date }}" | jq '.dzien' > bncd.json
+
+      - name: Process JSON
+        run: |
+          python3 parse.py
+
+      - name: Git Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "Aktualizacja Biblia na co dzień - ${{ env.date }}"
+          file_pattern: "bncd.json"
+          branch: main
 
