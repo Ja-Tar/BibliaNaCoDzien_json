@@ -14,8 +14,14 @@ with open("bncd.json", "r+", encoding="utf-8") as file:
     drugieT = parse_html(drugie["html"])
     drugieA = parse_html(drugie["zrodlo"])
     file.seek(0)
-    json.dump({
-        pierwszeT: pierwszeA,
-        drugieT: drugieA
-    }, file, ensure_ascii=False, indent=4)
+    json.dump([
+        {
+            "author": pierwszeA,
+            "content": pierwszeT,
+        },
+        {
+            "author": drugieA,
+            "content": drugieT,
+        }
+    ], file, ensure_ascii=False, indent=4)
     file.truncate()
