@@ -28,4 +28,5 @@ jobs:
           commit_message: "Aktualizacja Biblia na co dzień - ${{ env.date }}"
           file_pattern: "bncd.json"
           branch: main
+          commit_author: GitHub Actions <actions@github.com>
 
